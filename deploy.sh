@@ -14,22 +14,23 @@ git pull --ff-only
 after=$(git rev-parse HEAD)
 
 # Only reinstall when dependencies actually changed.
-if ! git diff --quiet "$before" "$after" -- package.json package-lock.json; then
+if ! git diff --quiet "$before" "$after" -- package.json pnpm-lock.yaml; then
   echo "→ dependencies changed, installing…"
-  npm install --no-audit --no-fund
+  # CI=true lets pnpm replace an npm-created node_modules without a terminal.
+  CI=true pnpm install --frozen-lockfile
 else
   echo "→ dependencies unchanged, skipping install"
 fi
 
 echo "→ regenerating character data…"
-npm run generate
+pnpm run generate
 
 # Build dictionaries for all languages if any are missing (gitignored). Best-effort:
 # the app works without them, and they only change when the pinned source versions
 # are bumped — so a dead download link can never break a deploy.
 if [ ! -f data/dictionary_kn.json ] || [ ! -f data/dictionary_ja.json ] || [ ! -f data/dictionary_de.json ]; then
   echo "→ building dictionaries…"
-  npm run dictionary || echo "⚠ dictionary build failed — continuing without auto-meanings"
+  pnpm run dictionary || echo "⚠ dictionary build failed — continuing without auto-meanings"
 fi
 
 echo "→ restarting '$SESSION' service…"

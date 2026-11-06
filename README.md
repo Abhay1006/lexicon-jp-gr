@@ -79,11 +79,13 @@ Learn to read real text by working through it the way comprehensible-input apps
 
 ## Setup
 
+Requires pnpm (pinned by `packageManager` in `package.json`).
+
 ```bash
-npm install         # install Express
-npm run generate    # build character data → data/characters_{kn,ja,de}.json
-npm run dictionary  # optional: build all dictionaries (Kannada, Japanese, German)
-npm start           # serve at http://localhost:3000
+pnpm install         # install Express
+pnpm run generate    # build character data → data/characters_{kn,ja,de}.json
+pnpm run dictionary  # optional: build all dictionaries (Kannada, Japanese, German)
+pnpm start           # serve at http://localhost:3000
 ```
 
 Open <http://localhost:3000> and start with the first lesson, or switch to the
@@ -94,18 +96,19 @@ bundled stories already include meanings, and the app runs fine without them.
 
 | Command | What it does |
 |---|---|
-| `npm run generate` | Generate character sets for all languages → `data/characters_{kn,ja,de}.json` |
-| `npm run dictionary` | (Re)build dictionaries for all languages (`data/dictionary_{kn,ja,de}.json`) from pinned sources |
-| `npm start` | Start the server (honors `PORT`, default `3000`) |
+| `pnpm run generate` | Generate character sets for all languages → `data/characters_{kn,ja,de}.json` |
+| `pnpm run dictionary` | (Re)build dictionaries for all languages (`data/dictionary_{kn,ja,de}.json`) from pinned sources |
+| `pnpm start` | Start the server (honors `PORT`, default `3000`) |
 
 ## Running on a phone (Termux)
 
 ```bash
 pkg install nodejs git
+npm install -g pnpm   # the version is pinned by packageManager in package.json
 git clone <your-repo-url> lexicon && cd lexicon
-npm install
-npm run generate
-npm start            # or: PORT=3000 ./run.sh
+pnpm install
+pnpm run generate
+pnpm start            # or: PORT=3000 ./run.sh
 ```
 
 Open `http://localhost:3000` on the phone, or `http://<phone-lan-ip>:3000` from another
