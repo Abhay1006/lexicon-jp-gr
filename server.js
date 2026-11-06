@@ -92,7 +92,7 @@ app.get('/api/characters', (req, res) => {
   const charFile = path.join(DATA_DIR, `characters_${lang}.json`);
   fs.readFile(charFile, 'utf8', (err, data) => {
     if (err) {
-      return res.status(500).json({ error: `Character data for language '${lang}' not generated. Run \`npm run generate\`.` });
+      return res.status(500).json({ error: `Character data for language '${lang}' not generated. Run \`pnpm run generate\`.` });
     }
     res.type('application/json').send(data);
   });

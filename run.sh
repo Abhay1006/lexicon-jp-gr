@@ -5,6 +5,6 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-[ -f data/characters.json ] || npm run generate   # first run only
+[ -f data/characters.json ] || pnpm run generate   # first run only
 # NODE_NO_WARNINGS silences the node:sqlite ExperimentalWarning (harmless).
 PORT="${PORT:-3000}" NODE_NO_WARNINGS=1 node server.js

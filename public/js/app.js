@@ -371,7 +371,7 @@ const App = (() => {
       document.getElementById('home-link').onclick = (e) => { e.preventDefault(); location.hash = '#/'; };
       route();
     } catch (err) {
-      statusEl().textContent = 'Could not load. Did you run `npm run generate`?';
+      statusEl().textContent = 'Could not load. Did you run `pnpm run generate`?';
       console.error(err);
     }
   }
